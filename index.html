@@ -6,28 +6,24 @@
 <title>训练计划</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-
 :root{
-  --bg:#0D0D0D; --surf:#1A1A1A; --surf2:#141414;
-  --bd:#2A2A2A; --bd2:#222222;
-  --t1:#F0F0F0; --t2:#B0B0B0; --t3:#808080; --t4:#606060;
-  --wu-bg:#1E1E1E; --wu-bd:#2E2E2E; --wu-lbl:#D0D0D0; --wu-det:#999999;
-  --w-bg:#1E1E1E; --w-bd:#2E2E2E; --w-btn:#222222; --w-btn-bd:#333333;
-  --tog-bg:#1A1A1A; --tog-bd:#2A2A2A;
-  --info-bg:#141414; --rest-t:#707070;
-  --sess-bg:#0D1A0D; --sess-bd:#1E4A1E;
+  --bg:#0D0D0D;--surf:#1A1A1A;--surf2:#141414;--bd:#2A2A2A;--bd2:#222222;
+  --t1:#F0F0F0;--t2:#B0B0B0;--t3:#808080;--t4:#606060;
+  --wu-bg:#1E1E1E;--wu-bd:#2E2E2E;--wu-lbl:#D0D0D0;--wu-det:#999;
+  --w-bg:#1E1E1E;--w-bd:#2E2E2E;--w-btn:#222;--w-btn-bd:#333;
+  --tog-bg:#1A1A1A;--tog-bd:#2A2A2A;--info-bg:#141414;--rest-t:#707070;
+  --sess-bg:#0D1A0D;--sess-bd:#1E4A1E;
+  --del:#E85555;--edit-c:#5A9EE8;
 }
 [data-theme="light"]{
-  --bg:#F0EFE9; --surf:#FFFFFF; --surf2:#F6F5F0;
-  --bd:#E0DED7; --bd2:#E8E6DF;
-  --t1:#1A1A1A; --t2:#555555; --t3:#888888; --t4:#AAAAAA;
-  --wu-bg:#F4F3EE; --wu-bd:#E4E2DA; --wu-lbl:#333333; --wu-det:#777777;
-  --w-bg:#F4F3EE; --w-bd:#DDDBD3; --w-btn:#ECEAE3; --w-btn-bd:#D0CEC6;
-  --tog-bg:#ECEAE3; --tog-bd:#D8D6CF;
-  --info-bg:#F6F5F0; --rest-t:#AAAAAA;
-  --sess-bg:#EDF8ED; --sess-bd:#AADAAA;
+  --bg:#F0EFE9;--surf:#FFF;--surf2:#F6F5F0;--bd:#E0DED7;--bd2:#E8E6DF;
+  --t1:#1A1A1A;--t2:#555;--t3:#888;--t4:#AAA;
+  --wu-bg:#F4F3EE;--wu-bd:#E4E2DA;--wu-lbl:#333;--wu-det:#777;
+  --w-bg:#F4F3EE;--w-bd:#DDDBD3;--w-btn:#ECEAE3;--w-btn-bd:#D0CEC6;
+  --tog-bg:#ECEAE3;--tog-bd:#D8D6CF;--info-bg:#F6F5F0;--rest-t:#AAA;
+  --sess-bg:#EDF8ED;--sess-bd:#AADAAA;
+  --del:#E85555;--edit-c:#5A9EE8;
 }
-
 body{background:var(--bg);color:var(--t1);font-family:'SF Mono','Roboto Mono','Courier New',monospace;max-width:460px;margin:0 auto;padding:24px 15px 80px;min-height:100vh;transition:background .25s,color .25s}
 button{font-family:inherit;cursor:pointer;border:none;outline:none;background:none}
 h1{font-size:26px;font-weight:800;color:var(--t1);letter-spacing:-1px;margin:0}
@@ -48,27 +44,20 @@ h1{font-size:26px;font-weight:800;color:var(--t1);letter-spacing:-1px;margin:0}
 .chip-dot{width:5px;height:5px;border-radius:50%;margin:5px auto 0}
 .today-pip{position:absolute;top:4px;right:4px;width:7px;height:7px;border-radius:50%;background:#52D68A;border:1.5px solid var(--bg)}
 
-/* ── Week editor ── */
 .edit-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
 .edit-hint{font-size:10px;color:var(--t3);letter-spacing:1px}
-.edit-btn{font-size:11px;font-weight:700;letter-spacing:1.5px;padding:7px 14px;border-radius:9px;border:1px solid var(--bd);background:var(--surf2);color:var(--t2)}
-.edit-btn.active{border-color:#F07A4A88;background:#F07A4A14;color:#F07A4A}
-.edit-btn.reset{color:var(--t3);font-size:10px;padding:7px 10px}
+.edit-btn-sm{font-size:11px;font-weight:700;letter-spacing:1.5px;padding:7px 14px;border-radius:9px;border:1px solid var(--bd);background:var(--surf2);color:var(--t2)}
+.edit-btn-sm.active{border-color:#F07A4A88;background:#F07A4A14;color:#F07A4A}
+.edit-btn-sm.reset{color:var(--t3);font-size:10px;padding:7px 10px}
 
 .editor-wrap{border-radius:13px;border:1px solid var(--bd);background:var(--surf2);padding:14px;margin-bottom:14px}
 .editor-title{font-size:10px;letter-spacing:2px;color:var(--t3);font-weight:700;margin-bottom:12px}
 .editor-grid{display:flex;flex-direction:column;gap:8px}
 .editor-row{display:flex;align-items:center;gap:10px}
 .editor-day{font-size:12px;font-weight:700;color:var(--t2);min-width:32px}
-.editor-cell{
-  flex:1;padding:10px 12px;border-radius:9px;border:1.5px solid var(--bd);
-  background:var(--surf);font-size:12px;font-weight:700;cursor:pointer;
-  display:flex;align-items:center;justify-content:space-between;
-  transition:all .15s;
-}
+.editor-cell{flex:1;padding:10px 12px;border-radius:9px;border:1.5px solid var(--bd);background:var(--surf);font-size:12px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:space-between;transition:all .15s}
 .editor-cell.selecting{border-color:#F07A4A;background:#F07A4A14;color:#F07A4A}
 .editor-cell.swap-target{border-color:#52D68A88;background:#52D68A10}
-.editor-cell.modified{position:relative}
 .modified-dot{width:6px;height:6px;border-radius:50%;background:#F07A4A;flex-shrink:0}
 .editor-hint{font-size:10px;color:var(--t3);text-align:center;margin-top:10px;line-height:1.7}
 
@@ -82,16 +71,37 @@ h1{font-size:26px;font-weight:800;color:var(--t1);letter-spacing:-1px;margin:0}
 
 .wu-wrap{border-radius:11px;border:1px solid var(--wu-bd);background:var(--wu-bg);margin-bottom:14px;overflow:hidden}
 .wu-header{display:flex;align-items:center;justify-content:space-between;padding:11px 14px;cursor:pointer}
-.wu-header-lbl{font-size:12px;font-weight:700;letter-spacing:1px}
 .wu-item{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;padding:11px 14px;border-top:1px solid var(--bd)}
 .wu-item-text{flex:1}
 .wu-item-lbl{font-size:13px;font-weight:600;color:var(--wu-lbl)}
 .wu-item-det{font-size:12px;color:var(--wu-det);margin-top:4px;line-height:1.5}
 .wu-chk{width:26px;height:26px;border-radius:8px;border:1.5px solid var(--bd);background:var(--w-bg);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:13px;color:transparent;transition:all .15s;margin-top:1px}
 
+/* ── Swipeable exercise card ── */
 .ex-cards{display:flex;flex-direction:column;gap:8px}
-.ex-card{border-radius:13px;padding:13px 14px;border:1px solid var(--bd);background:var(--surf);transition:opacity .2s}
+.ex-wrap{position:relative;border-radius:13px;overflow:hidden}
+.ex-actions{
+  position:absolute;right:0;top:0;bottom:0;
+  display:flex;align-items:stretch;
+  pointer-events:none;opacity:0;
+  transition:opacity .15s;
+}
+.ex-wrap.swiped .ex-actions{pointer-events:auto;opacity:1}
+.ex-action-btn{
+  width:72px;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:4px;font-size:11px;font-weight:700;
+  letter-spacing:.5px;border:none;cursor:pointer;
+}
+.ex-action-btn.edit-act{background:var(--edit-c);color:#fff}
+.ex-action-btn.del-act{background:var(--del);color:#fff;border-radius:0 13px 13px 0}
+.ex-card{
+  border-radius:13px;padding:13px 14px;
+  border:1px solid var(--bd);background:var(--surf);
+  transition:transform .2s,opacity .2s;
+  position:relative;
+}
 .ex-card.done{opacity:.32}
+.ex-card.hidden-ex{display:none}
 .ex-top{display:flex;align-items:flex-start;gap:10px;cursor:pointer}
 .ex-body{flex:1;min-width:0}
 .ex-name{font-size:14px;font-weight:700;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
@@ -115,6 +125,17 @@ h1{font-size:26px;font-weight:800;color:var(--t1);letter-spacing:-1px;margin:0}
 .w-val{min-width:90px;text-align:center;font-size:18px;font-weight:800;color:var(--t1);background:var(--w-bg);border-radius:9px;padding:6px 10px;border:1px solid var(--w-bd)}
 .w-unit{font-size:11px;color:var(--t3);letter-spacing:1px}
 
+/* Add exercise button */
+.add-ex-btn{
+  width:100%;padding:12px;border-radius:12px;
+  border:1.5px dashed var(--bd);background:transparent;
+  color:var(--t3);font-size:12px;font-weight:700;
+  letter-spacing:1px;margin-top:8px;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  transition:all .15s;
+}
+.add-ex-btn:active{background:var(--surf2)}
+
 .sess-btn{width:100%;padding:15px;border-radius:13px;border:1px solid;font-size:13px;font-weight:700;letter-spacing:2px;margin-top:16px;display:flex;align-items:center;justify-content:center;gap:8px}
 .sess-done-banner{border-radius:13px;padding:14px;text-align:center;margin-bottom:14px;background:var(--sess-bg);border:1px solid var(--sess-bd);font-size:13px;font-weight:700;color:#52D68A;letter-spacing:1px}
 .sess-undo{margin-top:8px;color:var(--t4);font-size:11px;letter-spacing:1px;padding:4px;width:100%;text-align:center}
@@ -127,12 +148,38 @@ h1{font-size:26px;font-weight:800;color:var(--t1);letter-spacing:-1px;margin:0}
 .note-row{display:flex;gap:10px;line-height:2.3;font-size:12px;color:var(--t2)}
 .note-icon{min-width:18px;color:var(--t3)}
 
-.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:var(--surf);border:1px solid var(--bd);border-radius:22px;padding:10px 24px;font-size:12px;color:var(--t2);letter-spacing:1px;pointer-events:none;opacity:0;transition:opacity .2s;white-space:nowrap;z-index:100}
+/* ── Modal ── */
+.modal-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.7);
+  display:flex;align-items:flex-end;justify-content:center;
+  z-index:200;padding:0;
+}
+.modal-box{
+  background:var(--surf);border-radius:20px 20px 0 0;
+  width:100%;max-width:460px;padding:24px 20px 40px;
+  border-top:1px solid var(--bd);
+}
+.modal-title{font-size:14px;font-weight:800;color:var(--t1);margin-bottom:18px;letter-spacing:-.3px}
+.modal-field{margin-bottom:14px}
+.modal-label{font-size:10px;letter-spacing:2px;color:var(--t3);font-weight:700;margin-bottom:6px;display:block}
+.modal-input{
+  width:100%;padding:11px 13px;border-radius:10px;
+  border:1px solid var(--bd);background:var(--surf2);
+  color:var(--t1);font-size:14px;font-family:inherit;outline:none;
+}
+.modal-input:focus{border-color:var(--accent,#F07A4A)}
+.modal-row{display:flex;gap:10px}
+.modal-btns{display:flex;gap:10px;margin-top:20px}
+.modal-cancel{flex:1;padding:13px;border-radius:11px;border:1px solid var(--bd);background:var(--surf2);color:var(--t2);font-size:13px;font-weight:700}
+.modal-save{flex:2;padding:13px;border-radius:11px;border:none;font-size:13px;font-weight:700;color:#fff}
+
+.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:var(--surf);border:1px solid var(--bd);border-radius:22px;padding:10px 24px;font-size:12px;color:var(--t2);letter-spacing:1px;pointer-events:none;opacity:0;transition:opacity .2s;white-space:nowrap;z-index:300}
 .toast.show{opacity:1}
 </style>
 </head>
 <body>
 <div id="app"></div>
+<div id="modal-root"></div>
 <div class="toast" id="toast"></div>
 <script>
 // ── Config ────────────────────────────────────────────────────────
@@ -140,21 +187,14 @@ const DW   = {bench:60,incline:18,skull:15,pullBonus:0,cableRow:28,curl:20,deadl
 const STEP = {bench:2.5,incline:2,skull:2.5,pullBonus:2.5,cableRow:2.5,curl:2.5,deadlift:2.5,cableFly:5,legExt:5,legCurl:5};
 const UNIT = {bench:'kg',incline:'kg',skull:'lbs',pullBonus:'kg',cableRow:'kg',curl:'kg',deadlift:'kg',cableFly:'kg',legExt:'kg',legCurl:'kg'};
 
-const DEFAULT_SCH = {
-  A:['chest','back','rest','legs','chest','rest','rest'],
-  B:['chest','back','rest','legs','back','rest','rest'],
-};
-const TYPE_NAMES = {chest:'胸 + 三头',back:'背 + 二头',legs:'腿',rest:'休息'};
-const TYPE_COLS  = {chest:'#F07A4A',back:'#5A9EE8',legs:'#52D68A',rest:'var(--t4)'};
+const DEFAULT_SCH={A:['chest','back','rest','legs','chest','rest','rest'],B:['chest','back','rest','legs','back','rest','rest']};
+const TYPE_NAMES={chest:'胸 + 三头',back:'背 + 二头',legs:'腿',rest:'休息'};
+const TYPE_COLS={chest:'#F07A4A',back:'#5A9EE8',legs:'#52D68A',rest:'var(--t4)'};
 const DZH=['周二','周三','周四','周五','周六','周日','周一'];
 const DEN=['TUE','WED','THU','FRI','SAT','SUN','MON'];
 const JMAP={2:0,3:1,4:2,5:3,6:4,0:5,1:6};
 
-function isoWeek(d){
-  const dt=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate()));
-  dt.setUTCDate(dt.getUTCDate()+4-(dt.getUTCDay()||7));
-  return Math.ceil(((dt-new Date(Date.UTC(dt.getUTCFullYear(),0,1)))/86400000+1)/7);
-}
+function isoWeek(d){const dt=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate()));dt.setUTCDate(dt.getUTCDate()+4-(dt.getUTCDay()||7));return Math.ceil(((dt-new Date(Date.UTC(dt.getUTCFullYear(),0,1)))/86400000+1)/7);}
 const TODAY=new Date();
 const AUTO_IDX=JMAP[TODAY.getDay()]??0;
 const AUTO_WEEK=isoWeek(TODAY)%2===1?'A':'B';
@@ -164,58 +204,29 @@ function maxSets(s){s=s.toString();return parseInt(s.split('–')[1]||s)||4;}
 function ls(k,d){try{const v=localStorage.getItem(k);return v!=null?JSON.parse(v):d;}catch{return d;}}
 function lsS(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch{}}
 
-// Custom week schedule: overrides DEFAULT_SCH for this week only
-function getCustomSch(){
-  const saved=ls('fw7-custom-'+WEEK_KEY,null);
-  return saved||[...DEFAULT_SCH[AUTO_WEEK]];
-}
-function setCustomSch(arr){lsS('fw7-custom-'+WEEK_KEY,arr);}
+function getCustomSch(){return ls('fw8-custom-'+WEEK_KEY,null)||[...DEFAULT_SCH[AUTO_WEEK]];}
+function setCustomSch(arr){lsS('fw8-custom-'+WEEK_KEY,arr);}
 function isModified(arr){return arr.some((t,i)=>t!==DEFAULT_SCH[AUTO_WEEK][i]);}
 
-// ── Workout data ──────────────────────────────────────────────────
+// Custom exercises per type: {hidden:['c2'], added:[{id,zh,en,sets,reps,wKey,note,isExtra}]}
+function getExConfig(type){return ls('fw8-ex-'+type,{hidden:[],added:[]});}
+function setExConfig(type,cfg){lsS('fw8-ex-'+type,cfg);}
+
 function mkWo(w){
   const b50=fmt(w.bench*.5),b80=fmt(w.bench*.8);
   return {
-    chest:{
-      name:'胸 + 三头',sub:'Chest & Triceps',col:'#F07A4A',bgD:'#160C04',bgL:'#FFF8F4',
-      warmup:[
-        {id:'wc0',label:'杠铃卧推 热身 1',detail:`正式重量 ×50%  →  ${b50} kg · 8次`},
-        {id:'wc1',label:'杠铃卧推 热身 2',detail:`正式重量 ×80%  →  ${b80} kg · 5次`},
-      ],
-      main:[
-        {id:'c0',zh:'平板杠铃卧推',en:'Flat Barbell Bench Press',sets:'3–4',reps:'6–8',wKey:'bench'},
-        {id:'c1',zh:'上斜哑铃卧推',en:'Incline Dumbbell Press',sets:'3–4',reps:'6–8',wKey:'incline'},
-        {id:'c2',zh:'绳索夹胸',en:'Cable Crossover / Fly',sets:'3',reps:'12–15',wKey:'cableFly',note:'孤立动作，顶峰收缩停1秒'},
-      ],
-      extra:[{id:'c3',zh:'碎颅者',en:'Skull Crusher',sets:'4',reps:'8–10',wKey:'skull',note:'肘固定垂直地面，只动前臂，控制离心'}],
-    },
-    back:{
-      name:'背 + 二头',sub:'Back & Biceps',col:'#5A9EE8',bgD:'#04090F',bgL:'#F4F8FF',
-      warmup:[
-        {id:'wb0',label:'高位下拉（轻量）',detail:'工作重量60% · 2×10 · 激活背阔肌'},
-        {id:'wb1',label:'绳索脸拉 / 弹力带开肩',detail:'1×15 · 激活菱形肌，提升引体质量'},
-      ],
-      main:[
-        {id:'b0',zh:'引体向上',en:'Pull-up',sets:'3–4',reps:'8次',wKey:'pullBonus',isPullUp:true,
-          note:()=>w.pullBonus>0?'已负重，稳定后继续加':'10个稳定后开始负重，先做稳质量'},
-        {id:'b1',zh:'龙门架划船',en:'Cable Row',sets:'3–4',reps:'10',wKey:'cableRow'},
-      ],
-      extra:[{id:'b2',zh:'二头弯举',en:'Bicep Curl',sets:'4',reps:'10',wKey:'curl',note:'顶峰收缩停1秒'}],
-    },
-    legs:{
-      name:'腿（踝部恢复）',sub:'Legs — Ankle Recovery',col:'#52D68A',bgD:'#04100A',bgL:'#F2FFF6',
-      warmup:[
-        {id:'wl0',label:'踝关节环绕',detail:'各方向×10次 · 恢复期必做'},
-        {id:'wl1',label:'自重臀桥',detail:'2×15 · 激活臀大肌 & 核心'},
-        {id:'wl2',label:'轻量腿举',detail:'最轻重量 × 1×15 · 润滑膝关节'},
-      ],
-      main:[
-        {id:'l0',zh:'哑铃硬拉（轻量）',en:'Light Dumbbell Deadlift',sets:'3–4',reps:'10',wKey:'deadlift',note:'踝部恢复期，控制离心，不追重量'},
-        {id:'l1',zh:'坐姿腿屈伸',en:'Seated Leg Extension',sets:'3–4',reps:'10',wKey:'legExt',note:'股四头孤立'},
-        {id:'l2',zh:'坐姿腿弯举',en:'Seated Leg Curl',sets:'3–4',reps:'10',wKey:'legCurl',note:'防止肌力失衡'},
-      ],
-      extra:[],
-    },
+    chest:{name:'胸 + 三头',sub:'Chest & Triceps',col:'#F07A4A',bgD:'#160C04',bgL:'#FFF8F4',
+      warmup:[{id:'wc0',label:'杠铃卧推 热身 1',detail:`正式重量 ×50% → ${b50} kg · 8次`},{id:'wc1',label:'杠铃卧推 热身 2',detail:`正式重量 ×80% → ${b80} kg · 5次`}],
+      main:[{id:'c0',zh:'平板杠铃卧推',en:'Flat Barbell Bench Press',sets:'3–4',reps:'6–8',wKey:'bench'},{id:'c1',zh:'上斜哑铃卧推',en:'Incline Dumbbell Press',sets:'3–4',reps:'6–8',wKey:'incline'},{id:'c2',zh:'绳索夹胸',en:'Cable Crossover / Fly',sets:'3',reps:'12–15',wKey:'cableFly',note:'孤立动作，顶峰收缩停1秒'}],
+      extra:[{id:'c3',zh:'碎颅者',en:'Skull Crusher',sets:'4',reps:'8–10',wKey:'skull',note:'肘固定垂直地面，只动前臂，控制离心'}]},
+    back:{name:'背 + 二头',sub:'Back & Biceps',col:'#5A9EE8',bgD:'#04090F',bgL:'#F4F8FF',
+      warmup:[{id:'wb0',label:'高位下拉（轻量）',detail:'工作重量60% · 2×10 · 激活背阔肌'},{id:'wb1',label:'绳索脸拉 / 弹力带开肩',detail:'1×15 · 激活菱形肌，提升引体质量'}],
+      main:[{id:'b0',zh:'引体向上',en:'Pull-up',sets:'3–4',reps:'8次',wKey:'pullBonus',isPullUp:true,note:()=>w.pullBonus>0?'已负重，稳定后继续加':'10个稳定后开始负重'},{id:'b1',zh:'龙门架划船',en:'Cable Row',sets:'3–4',reps:'10',wKey:'cableRow'}],
+      extra:[{id:'b2',zh:'二头弯举',en:'Bicep Curl',sets:'4',reps:'10',wKey:'curl',note:'顶峰收缩停1秒'}]},
+    legs:{name:'腿（踝部恢复）',sub:'Legs — Ankle Recovery',col:'#52D68A',bgD:'#04100A',bgL:'#F2FFF6',
+      warmup:[{id:'wl0',label:'踝关节环绕',detail:'各方向×10次 · 恢复期必做'},{id:'wl1',label:'自重臀桥',detail:'2×15 · 激活臀大肌 & 核心'},{id:'wl2',label:'轻量腿举',detail:'最轻重量 × 1×15 · 润滑膝关节'}],
+      main:[{id:'l0',zh:'哑铃硬拉（轻量）',en:'Light Dumbbell Deadlift',sets:'3–4',reps:'10',wKey:'deadlift',note:'踝部恢复期，控制离心'},{id:'l1',zh:'坐姿腿屈伸',en:'Seated Leg Extension',sets:'3–4',reps:'10',wKey:'legExt',note:'股四头孤立'},{id:'l2',zh:'坐姿腿弯举',en:'Seated Leg Curl',sets:'3–4',reps:'10',wKey:'legCurl',note:'防止肌力失衡'}],
+      extra:[]},
     rest:{name:'休息',sub:'Rest Day',col:'#888',bgD:'#0D0D0D',bgL:'#F0EFE9',warmup:[],main:[],extra:[]},
   };
 }
@@ -223,23 +234,31 @@ function fmt(n){return (Math.round(n/2.5)*2.5).toFixed(1).replace(/\.0$/,'');}
 
 // ── State ─────────────────────────────────────────────────────────
 const S={
-  dayIdx:AUTO_IDX,
-  weights:{...DW,...ls('fw7-w',{})},
-  openCard:null,
-  wuOpen:ls('fw7-wu',true),
-  dark:ls('fw7-dark',true),
-  editing:false,
-  selecting:null, // index of day being swapped
-  customSch:getCustomSch(),
+  dayIdx:AUTO_IDX,weights:{...DW,...ls('fw8-w',{})},
+  openCard:null,wuOpen:ls('fw8-wu',true),dark:ls('fw8-dark',true),
+  editing:false,selecting:null,customSch:getCustomSch(),
+  modal:null, // {mode:'add'|'edit', type, exId, isExtra}
 };
 
-function chkBase(){return `fw7-chk-${TODAY.getFullYear()}-W${isoWeek(TODAY)}-${AUTO_WEEK}-${S.dayIdx}`;}
+function chkBase(){return `fw8-chk-${TODAY.getFullYear()}-W${isoWeek(TODAY)}-${AUTO_WEEK}-${S.dayIdx}`;}
 function getChks(){return ls(chkBase(),{});}
 function setChks(o){lsS(chkBase(),o);}
-function getDayChks(i){return ls(`fw7-chk-${TODAY.getFullYear()}-W${isoWeek(TODAY)}-${AUTO_WEEK}-${i}`,{});}
+function getDayChks(i){return ls(`fw8-chk-${TODAY.getFullYear()}-W${isoWeek(TODAY)}-${AUTO_WEEK}-${i}`,{});}
 function getSets(chks,exId,n){const a=chks[exId+'_s'];return Array.isArray(a)&&a.length===n?a:Array(n).fill(false);}
-
 function applyTheme(){document.documentElement.setAttribute('data-theme',S.dark?'dark':'light');}
+
+// Merge default + custom exercises for a type
+function getExercises(wo,type){
+  const d=wo[type];
+  const cfg=getExConfig(type);
+  const hidden=cfg.hidden||[];
+  const added=cfg.added||[];
+  const filterHidden=arr=>arr.filter(ex=>!hidden.includes(ex.id));
+  return {
+    main:[...filterHidden(d.main),...added.filter(e=>!e.isExtra&&!hidden.includes(e.id))],
+    extra:[...filterHidden(d.extra),...added.filter(e=>e.isExtra&&!hidden.includes(e.id))],
+  };
+}
 
 // ── Render ────────────────────────────────────────────────────────
 function render(){
@@ -250,7 +269,8 @@ function render(){
   const bg=S.dark?d.bgD:d.bgL;
   const chks=getChks();
   const sessDone=!!chks['__sess__'];
-  const allEx=[...(d.main||[]),...(d.extra||[])];
+  const {main,extra}=getExercises(wo,type);
+  const allEx=[...main,...extra];
   const doneN=allEx.filter(ex=>getSets(chks,ex.id,maxSets(ex.sets)).every(Boolean)).length;
   const modified=isModified(S.customSch);
   let h='';
@@ -263,32 +283,25 @@ function render(){
       <div class="hdr-r">
         <button class="theme-btn" onclick="toggleTheme()">${S.dark?'☀️':'🌙'}</button>
         <div class="week-tog">
-          <button class="week-btn" onclick="setWeekAB('A')" style="background:${AUTO_WEEK==='A'?'var(--surf)':'transparent'};color:${AUTO_WEEK==='A'?'var(--t1)':'var(--t3)'}">奇周</button>
-          <button class="week-btn" onclick="setWeekAB('B')" style="background:${AUTO_WEEK==='B'?'var(--surf)':'transparent'};color:${AUTO_WEEK==='B'?'var(--t1)':'var(--t3)'}">偶周</button>
+          <button class="week-btn" style="background:${AUTO_WEEK==='A'?'var(--surf)':'transparent'};color:${AUTO_WEEK==='A'?'var(--t1)':'var(--t3)'}">奇周</button>
+          <button class="week-btn" style="background:${AUTO_WEEK==='B'?'var(--surf)':'transparent'};color:${AUTO_WEEK==='B'?'var(--t1)':'var(--t3)'}">偶周</button>
         </div>
       </div>
     </div>
-    <div class="today-badge">
-      <div class="today-dot"></div>
+    <div class="today-badge"><div class="today-dot"></div>
       今天 ${DEN[AUTO_IDX]} ${DZH[AUTO_IDX]} &nbsp;·&nbsp; ${AUTO_WEEK==='A'?'奇':'偶'}周 &nbsp;·&nbsp; ${wo[S.customSch[AUTO_IDX]].name}
     </div>
   </div>`;
 
-  // Day chips
+  // Chips
   h+=`<div class="chips">`;
   for(let i=0;i<7;i++){
     const t=S.customSch[i],info=wo[t];
     const act=S.dayIdx===i,isToday=i===AUTO_IDX,isRest=t==='rest';
-    const dc=getDayChks(i),dayDone=!!dc['__sess__'];
-    const def=DEFAULT_SCH[AUTO_WEEK][i];
-    const changedDay=t!==def;
-    h+=`<button class="chip" onclick="setDay(${i})" style="
-      border-color:${act?info.col:(isToday?'var(--t3)':'var(--bd2)')};
-      background:${act?info.col+'25':'var(--surf2)'};
-      color:${isRest?'var(--t4)':(act?info.col:(isToday?'var(--t2)':'var(--t3)'))}">
-      <span class="chip-en">${DEN[i]}</span>
-      <span class="chip-zh">${DZH[i]}</span>
-      <div class="chip-dot" style="background:${isRest?'var(--bd)':(dayDone?'#52D68A':(changedDay?'#F07A4A':info.col+'99'))}"></div>
+    const dc=getDayChks(i),dayDone=!!dc['__sess__'],changed=t!==DEFAULT_SCH[AUTO_WEEK][i];
+    h+=`<button class="chip" onclick="setDay(${i})" style="border-color:${act?info.col:(isToday?'var(--t3)':'var(--bd2)')};background:${act?info.col+'25':'var(--surf2)'};color:${isRest?'var(--t4)':(act?info.col:(isToday?'var(--t2)':'var(--t3)'))}">
+      <span class="chip-en">${DEN[i]}</span><span class="chip-zh">${DZH[i]}</span>
+      <div class="chip-dot" style="background:${isRest?'var(--bd)':(dayDone?'#52D68A':(changed?'#F07A4A':info.col+'99'))}"></div>
       ${isToday?'<div class="today-pip"></div>':''}
     </button>`;
   }
@@ -298,57 +311,37 @@ function render(){
   h+=`<div class="edit-bar">
     <span class="edit-hint">${modified?'⚡ 本周已自定义排期':'本周按默认排期'}</span>
     <div style="display:flex;gap:6px">
-      ${modified?`<button class="edit-btn reset" onclick="resetSch()">重置</button>`:''}
-      <button class="edit-btn${S.editing?' active':''}" onclick="toggleEdit()">
-        ${S.editing?'完成编辑':'编辑本周'}
-      </button>
+      ${modified?`<button class="edit-btn-sm reset" onclick="resetSch()">重置</button>`:''}
+      <button class="edit-btn-sm${S.editing?' active':''}" onclick="toggleEdit()">${S.editing?'完成编辑':'编辑本周'}</button>
     </div>
   </div>`;
 
   // Week editor
   if(S.editing){
-    h+=`<div class="editor-wrap">
-      <div class="editor-title">本周排期 · 点击两天互换训练内容</div>
-      <div class="editor-grid">`;
+    h+=`<div class="editor-wrap"><div class="editor-title">本周排期 · 点击两天互换训练内容</div><div class="editor-grid">`;
     for(let i=0;i<7;i++){
-      const t=S.customSch[i];
-      const def=DEFAULT_SCH[AUTO_WEEK][i];
-      const changed=t!==def;
-      const isSelecting=S.selecting===i;
-      const isTarget=S.selecting!==null&&S.selecting!==i;
-      h+=`<div class="editor-row">
-        <span class="editor-day">${DZH[i]}</span>
-        <div class="editor-cell${isSelecting?' selecting':(isTarget?' swap-target':'')}${changed?' modified':''}"
-          onclick="selectForSwap(${i})"
-          style="color:${TYPE_COLS[t]}">
+      const t=S.customSch[i],changed=t!==DEFAULT_SCH[AUTO_WEEK][i];
+      const isSel=S.selecting===i,isTarget=S.selecting!==null&&S.selecting!==i;
+      h+=`<div class="editor-row"><span class="editor-day">${DZH[i]}</span>
+        <div class="editor-cell${isSel?' selecting':(isTarget?' swap-target':'')}" onclick="selectForSwap(${i})" style="color:${TYPE_COLS[t]}">
           <span>${TYPE_NAMES[t]}</span>
           <div style="display:flex;align-items:center;gap:6px">
-            ${changed?`<div class="modified-dot"></div>`:''}
-            ${isSelecting?'<span style="font-size:11px;opacity:.7">已选</span>':(isTarget?'<span style="font-size:11px;color:#52D68A">换这里</span>':'')}
+            ${changed?'<div class="modified-dot"></div>':''}
+            ${isSel?'<span style="font-size:11px;opacity:.7">已选</span>':(isTarget?'<span style="font-size:11px;color:#52D68A">换这里</span>':'')}
           </div>
-        </div>
-      </div>`;
+        </div></div>`;
     }
-    h+=`</div>
-      <div class="editor-hint">
-        ${S.selecting!==null?`已选 ${DZH[S.selecting]}，点击另一天完成互换`:'点击任意一天开始选择，再点另一天互换'}
-      </div>
-    </div>`;
+    h+=`</div><div class="editor-hint">${S.selecting!==null?`已选 ${DZH[S.selecting]}，点击另一天完成互换`:'点击任意一天开始选择，再点另一天互换'}</div></div>`;
   }
 
   // Main card
   h+=`<div class="main-card" style="border-color:${d.col}35;background:${bg}">`;
-  h+=`<div class="card-hdr">
-    <div>
-      <div style="font-size:10px;letter-spacing:3px;color:${d.col};margin-bottom:5px;font-weight:700">${DEN[S.dayIdx]} · ${DZH[S.dayIdx]}</div>
-      <div style="font-size:22px;font-weight:800;color:var(--t1);letter-spacing:-.5px">${d.name}</div>
-      <div class="card-sub">${d.sub}</div>
-    </div>
-    ${type!=='rest'?`
-      <div style="text-align:right">
-        <div style="font-size:26px;font-weight:800;color:${d.col};line-height:1">${doneN}<span style="font-size:15px;color:var(--t3)">/${allEx.length}</span></div>
-        <div class="counter-lbl">完成</div>
-      </div>`:''}</div>`;
+  h+=`<div class="card-hdr"><div>
+    <div style="font-size:10px;letter-spacing:3px;color:${d.col};margin-bottom:5px;font-weight:700">${DEN[S.dayIdx]} · ${DZH[S.dayIdx]}</div>
+    <div style="font-size:22px;font-weight:800;color:var(--t1);letter-spacing:-.5px">${d.name}</div>
+    <div class="card-sub">${d.sub}</div>
+    </div>${type!=='rest'?`<div style="text-align:right"><div style="font-size:26px;font-weight:800;color:${d.col};line-height:1">${doneN}<span style="font-size:15px;color:var(--t3)">/${allEx.length}</span></div><div class="counter-lbl">完成</div></div>`:''}
+  </div>`;
 
   if(type==='rest'){
     h+=`<div class="rest-items"><div>— 积极恢复 &amp; 拉伸</div><div>— 补充蛋白质 &amp; 热量</div><div>— 充足睡眠 7–8h</div></div>`;
@@ -356,38 +349,36 @@ function render(){
     if(sessDone) h+=`<div class="sess-done-banner">🎉 今日训练完成！注意恢复</div>`;
 
     // Warmup
-    h+=`<div class="wu-wrap">
-      <div class="wu-header" onclick="toggleWu()" style="background:${d.col}18">
-        <div><span class="wu-header-lbl" style="color:${d.col}">热身 WARM-UP</span>
-        <span style="font-size:11px;font-weight:600;opacity:.6;color:${d.col}"> &nbsp;${d.warmup.length}项</span></div>
-        <span style="font-size:16px;color:${d.col};font-weight:700">${S.wuOpen?'▾':'▸'}</span>
+    h+=`<div class="wu-wrap"><div class="wu-header" onclick="toggleWu()" style="background:${d.col}18">
+      <div><span style="font-size:12px;font-weight:700;letter-spacing:1px;color:${d.col}">热身 WARM-UP</span>
+      <span style="font-size:11px;font-weight:600;opacity:.6;color:${d.col}"> &nbsp;${d.warmup.length}项</span></div>
+      <span style="font-size:16px;color:${d.col};font-weight:700">${S.wuOpen?'▾':'▸'}</span>
+    </div>`;
+    if(S.wuOpen) d.warmup.forEach(it=>{
+      const done=!!chks[it.id];
+      h+=`<div class="wu-item" style="background:${S.dark?d.bgD:d.bgL};opacity:${done?.45:1}">
+        <div class="wu-item-text"><div class="wu-item-lbl" style="${done?'text-decoration:line-through;color:var(--t3)':''}">${it.label}</div>
+        <div class="wu-item-det">${it.detail}</div></div>
+        <button class="wu-chk" onclick="chkWu('${it.id}')" style="border-color:${done?d.col+'88':'var(--bd)'};background:${done?d.col+'22':'var(--w-bg)'};color:${done?d.col:'transparent'}">✓</button>
       </div>`;
-    if(S.wuOpen){
-      d.warmup.forEach(it=>{
-        const done=!!chks[it.id];
-        h+=`<div class="wu-item" style="background:${S.dark?d.bgD:d.bgL};opacity:${done?.45:1}">
-          <div class="wu-item-text">
-            <div class="wu-item-lbl" style="${done?'text-decoration:line-through;color:var(--t3)':''}">${it.label}</div>
-            <div class="wu-item-det">${it.detail}</div>
-          </div>
-          <button class="wu-chk" onclick="chkWu('${it.id}')" style="border-color:${done?d.col+'88':'var(--bd)'};background:${done?d.col+'22':'var(--w-bg)'};color:${done?d.col:'transparent'}">✓</button>
-        </div>`;
-      });
-    }
+    });
     h+=`</div>`;
 
-    // Main
-    if(d.main.length){
-      h+=`<div class="sec-lbl">主要动作 MAIN</div><div class="ex-cards">`;
-      d.main.forEach(ex=>{h+=exCard(ex,d.col,false,chks);});
+    // Main exercises
+    if(main.length){
+      h+=`<div class="sec-lbl">主要动作 MAIN</div><div class="ex-cards" id="main-cards">`;
+      main.forEach(ex=>{h+=exCard(ex,d.col,false,chks,type);});
       h+=`</div>`;
     }
+    h+=`<button class="add-ex-btn" onclick="openModal('add','${type}',false)" style="border-color:${d.col}55;color:${d.col}88">+ 添加主要动作</button>`;
+
     // Extra
-    if(d.extra.length){
-      h+=`<div class="sec-lbl" style="margin-top:16px">加练 EXTRA</div><div class="ex-cards">`;
-      d.extra.forEach(ex=>{h+=exCard(ex,d.col,true,chks);});
+    if(extra.length){
+      h+=`<div class="sec-lbl" style="margin-top:16px">加练 EXTRA</div><div class="ex-cards" id="extra-cards">`;
+      extra.forEach(ex=>{h+=exCard(ex,d.col,true,chks,type);});
       h+=`</div>`;
     }
+    h+=`<button class="add-ex-btn" onclick="openModal('add','${type}',true)" style="margin-top:${extra.length?'8px':'16px'};border-color:${d.col}55;color:${d.col}88">+ 添加加练动作</button>`;
 
     if(!sessDone){
       h+=`<button class="sess-btn" onclick="sessComplete()" style="border-color:${d.col}66;background:${d.col}14;color:${d.col}">✓ &nbsp;完成今日训练</button>`;
@@ -397,26 +388,24 @@ function render(){
   }
   h+=`</div>`;
 
-  // Info: schedule (show customized)
+  // This week schedule
   h+=`<div class="info-card"><div class="info-title">本周排期 THIS WEEK</div>`;
   for(let i=0;i<7;i++){
     const t=S.customSch[i],def=DEFAULT_SCH[AUTO_WEEK][i],changed=t!==def;
-    h+=`<div class="info-row" style="color:${TYPE_COLS[t]}">
-      <span class="info-day">${DZH[i]}</span>
-      <span>${TYPE_NAMES[t]}${changed?` <span style="font-size:10px;color:#F07A4A;opacity:.8">（已调整）</span>`:''}</span>
-    </div>`;
+    h+=`<div class="info-row" style="color:${TYPE_COLS[t]}"><span class="info-day">${DZH[i]}</span>
+      <span>${TYPE_NAMES[t]}${changed?` <span style="font-size:10px;color:#F07A4A;opacity:.8">（已调整）</span>`:''}</span></div>`;
   }
   h+=`</div>`;
 
   // Notes
   h+=`<div class="info-card"><div class="info-title">NOTES / 备注</div>`;
-  [['→','点击动作卡片 = 展开详情 & 调节重量'],
-   ['○','逐组打点记录，全部完成后动作自动勾选'],
-   ['⇄','点击"编辑本周"可互换任意两天的训练内容'],
+  [['←','左滑动作卡片 = 编辑 / 删除'],
+   ['○','逐组打点记录，全部完成后自动勾选'],
+   ['⇄','点击"编辑本周"可互换任意两天'],
    ['★','加练动作在主项全部完成后进行'],
    ['⚠','腿日：踝部恢复中，轻重量优先'],
    ['↑','稳定完成上限组数后，下次加 2.5 kg'],
-   ['◎','蛋白质 ≥ 体重(kg) × 2g  ·  热量盈余 200–300 kcal'],
+   ['◎','蛋白质 ≥ 体重(kg)×2g · 热量盈余 200–300 kcal'],
    ['🌙','睡够 7–8h = 免费增肌'],
   ].forEach(([icon,text])=>{
     h+=`<div class="note-row"><span class="note-icon">${icon}</span><span>${text}</span></div>`;
@@ -424,117 +413,244 @@ function render(){
   h+=`</div>`;
 
   document.getElementById('app').innerHTML=h;
+  initSwipe();
+  renderModal();
 }
 
 // ── Exercise card ─────────────────────────────────────────────────
-function exCard(ex,col,isExtra,chks){
+function exCard(ex,col,isExtra,chks,type){
   const isOpen=S.openCard===ex.id;
   const n=maxSets(ex.sets);
   const sets=getSets(chks,ex.id,n);
   const doneSets=sets.filter(Boolean).length;
   const isDone=sets.every(Boolean);
   const note=typeof ex.note==='function'?ex.note():(ex.note||'');
+  const wKey=ex.wKey;
   let wDisp=null;
-  if(ex.wKey){const v=S.weights[ex.wKey];wDisp=(ex.isPullUp&&v===0)?'自重':`${v} ${UNIT[ex.wKey]}`;}
+  if(wKey&&S.weights[wKey]!==undefined){const v=S.weights[wKey];wDisp=(ex.isPullUp&&v===0)?'自重':`${v} ${UNIT[wKey]||'kg'}`;}
   const progress=n>0?(doneSets/n*100).toFixed(0):0;
-  const dotsHtml=sets.map((done,i)=>`
-    <button class="set-dot${done?' done':''}" onclick="chkSet('${ex.id}',${i},${n},event)"
-      style="${done?`background:${col};border-color:${col};`:''}color:${done?'#fff':'var(--t3)'}">
-      ${done?'✓':i+1}
-    </button>`).join('');
+  const dots=sets.map((done,i)=>`<button class="set-dot${done?' done':''}" onclick="chkSet('${ex.id}',${i},${n},event)" style="${done?`background:${col};border-color:${col};`:''}color:${done?'#fff':'var(--t3)'}">${done?'✓':i+1}</button>`).join('');
   return `
-  <div class="ex-card${isDone?' done':''}" style="border-color:${isExtra?col+'66':'var(--bd)'};background:${isExtra?col+'10':'var(--surf)'}">
-    <div class="ex-top" onclick="openCard('${ex.id}')">
-      <div class="ex-body">
-        <div class="ex-name${isDone?' done-txt':''}">
-          ${isExtra?`<span class="ex-badge" style="background:${col}25;color:${col}">加练</span>`:''}
-          <span style="color:${isDone?'var(--t3)':(isExtra?col:'var(--t1)')}">${ex.zh}</span>
+  <div class="ex-wrap" data-exid="${ex.id}" data-type="${type}" data-isextra="${isExtra}">
+    <div class="ex-actions">
+      <button class="ex-action-btn edit-act" onclick="openModal('edit','${type}','${ex.id}',${isExtra})">
+        <span style="font-size:16px">✏️</span><span>编辑</span>
+      </button>
+      <button class="ex-action-btn del-act" onclick="deleteEx('${type}','${ex.id}')">
+        <span style="font-size:16px">🗑</span><span>删除</span>
+      </button>
+    </div>
+    <div class="ex-card${isDone?' done':''}" style="border-color:${isExtra?col+'66':'var(--bd)'};background:${isExtra?col+'10':'var(--surf)'}">
+      <div class="ex-top" onclick="openCard('${ex.id}')">
+        <div class="ex-body">
+          <div class="ex-name${isDone?' done-txt':''}">
+            ${isExtra?`<span class="ex-badge" style="background:${col}25;color:${col}">加练</span>`:''}
+            <span style="color:${isDone?'var(--t3)':(isExtra?col:'var(--t1)')}">${ex.zh}</span>
+          </div>
+          ${isOpen?`<div class="ex-en">${ex.en||''}</div>`:''}
+          ${isOpen&&note?`<div class="ex-note" style="color:${isExtra?col+'CC':'var(--t2)'}">${note}</div>`:''}
         </div>
-        ${isOpen?`<div class="ex-en">${ex.en}</div>`:''}
-        ${isOpen&&note?`<div class="ex-note" style="color:${isExtra?col+'CC':'var(--t2)'}">${note}</div>`:''}
+        <div class="ex-stats">
+          <div class="ex-sets-n" style="color:${col}">${ex.sets}</div><div class="ex-lbl">组</div>
+          <div class="ex-reps-n">${ex.reps}</div><div class="ex-lbl">次</div>
+        </div>
       </div>
-      <div class="ex-stats">
-        <div class="ex-sets-n" style="color:${col}">${ex.sets}</div>
-        <div class="ex-lbl">组</div>
-        <div class="ex-reps-n">${ex.reps}</div>
-        <div class="ex-lbl">次</div>
+      <div class="set-dots" onclick="event.stopPropagation()">
+        ${dots}
+        <div class="set-progress"><div class="set-progress-fill" style="width:${progress}%;background:${col}88"></div></div>
       </div>
+      ${isOpen&&wKey&&S.weights[wKey]!==undefined?`
+        <div class="w-row" onclick="event.stopPropagation()">
+          <button class="w-btn" onclick="adjW('${wKey}',-${STEP[wKey]||2.5})">−</button>
+          <div class="w-val">${wDisp}</div>
+          <button class="w-btn" onclick="adjW('${wKey}',${STEP[wKey]||2.5})">+</button>
+          <span class="w-unit">${ex.isPullUp?'负重 (kg)':(UNIT[wKey]||'kg').toUpperCase()}</span>
+        </div>`:''}
     </div>
-    <div class="set-dots" onclick="event.stopPropagation()">
-      ${dotsHtml}
-      <div class="set-progress"><div class="set-progress-fill" style="width:${progress}%;background:${col}88"></div></div>
-    </div>
-    ${isOpen&&ex.wKey?`
-      <div class="w-row" onclick="event.stopPropagation()">
-        <button class="w-btn" onclick="adjW('${ex.wKey}',-${STEP[ex.wKey]})">−</button>
-        <div class="w-val">${wDisp}</div>
-        <button class="w-btn" onclick="adjW('${ex.wKey}',${STEP[ex.wKey]})">+</button>
-        <span class="w-unit">${ex.isPullUp?'负重 (kg)':UNIT[ex.wKey].toUpperCase()}</span>
-      </div>`:''}
   </div>`;
 }
 
-// ── Actions ───────────────────────────────────────────────────────
-function toggleTheme(){S.dark=!S.dark;lsS('fw7-dark',S.dark);render();}
-function setWeekAB(w){toast(w==='A'?'奇周（当前周自动判断）':'偶周（当前周自动判断）');}
-function setDay(i){S.dayIdx=i;S.openCard=null;S.selecting=null;render();}
-function toggleWu(){S.wuOpen=!S.wuOpen;lsS('fw7-wu',S.wuOpen);render();}
-function openCard(id){S.openCard=S.openCard===id?null:id;render();}
-function toggleEdit(){S.editing=!S.editing;S.selecting=null;render();}
-
-function selectForSwap(i){
-  if(S.selecting===null){
-    S.selecting=i;render();
-  } else if(S.selecting===i){
-    S.selecting=null;render();
-  } else {
-    // Swap
-    const arr=[...S.customSch];
-    [arr[S.selecting],arr[i]]=[arr[i],arr[S.selecting]];
-    S.customSch=arr;
-    setCustomSch(arr);
-    S.selecting=null;
-    toast(`✓ ${DZH[S.selecting===null?i:S.selecting]} 与 ${DZH[i]} 已互换`);
-    render();
-  }
+// ── Swipe ─────────────────────────────────────────────────────────
+function initSwipe(){
+  document.querySelectorAll('.ex-wrap').forEach(wrap=>{
+    let startX=0,startY=0,dx=0,moved=false;
+    const card=wrap.querySelector('.ex-card');
+    wrap.addEventListener('touchstart',e=>{
+      // close any other open swipes
+      document.querySelectorAll('.ex-wrap.swiped').forEach(w=>{if(w!==wrap)closeSwipe(w);});
+      startX=e.touches[0].clientX;startY=e.touches[0].clientY;dx=0;moved=false;
+    },{passive:true});
+    wrap.addEventListener('touchmove',e=>{
+      dx=e.touches[0].clientX-startX;
+      const dy=e.touches[0].clientY-startY;
+      if(!moved&&Math.abs(dy)>Math.abs(dx)) return; // vertical scroll
+      moved=true;
+      if(dx<0){card.style.transform=`translateX(${Math.max(dx,-144)}px)`;e.preventDefault();}
+    },{passive:false});
+    wrap.addEventListener('touchend',()=>{
+      if(!moved) return;
+      if(dx<-60){wrap.classList.add('swiped');card.style.transform='translateX(-144px)';}
+      else{closeSwipe(wrap);}
+    });
+  });
+  // tap outside to close
+  document.addEventListener('touchstart',e=>{
+    if(!e.target.closest('.ex-wrap')){
+      document.querySelectorAll('.ex-wrap.swiped').forEach(closeSwipe);
+    }
+  },{passive:true});
 }
-function resetSch(){
-  S.customSch=[...DEFAULT_SCH[AUTO_WEEK]];
-  setCustomSch(S.customSch);
-  S.selecting=null;
-  toast('已恢复默认排期');
+function closeSwipe(wrap){
+  wrap.classList.remove('swiped');
+  const card=wrap.querySelector('.ex-card');
+  if(card) card.style.transform='';
+}
+
+// ── Modal ─────────────────────────────────────────────────────────
+function openModal(mode,type,exIdOrBool,isExtra){
+  if(mode==='add'){
+    S.modal={mode:'add',type,isExtra:!!exIdOrBool};
+  } else {
+    // edit — find exercise
+    const wo=mkWo(S.weights);
+    const cfg=getExConfig(type);
+    const d=wo[type];
+    const allDefault=[...d.main,...d.extra];
+    const defaultEx=allDefault.find(e=>e.id===exIdOrBool);
+    const addedEx=(cfg.added||[]).find(e=>e.id===exIdOrBool);
+    const ex=defaultEx||addedEx;
+    S.modal={mode:'edit',type,exId:exIdOrBool,isExtra,ex};
+  }
+  renderModal();
+}
+
+function renderModal(){
+  const root=document.getElementById('modal-root');
+  if(!S.modal){root.innerHTML='';return;}
+  const {mode,type,isExtra,ex}=S.modal;
+  const col=mkWo(S.weights)[type]?.col||'#F07A4A';
+  const isEdit=mode==='edit';
+  const v=ex||{};
+  root.innerHTML=`
+  <div class="modal-overlay" onclick="closeModalOutside(event)">
+    <div class="modal-box">
+      <div class="modal-title">${isEdit?'编辑动作':'添加动作'}</div>
+      <div class="modal-field">
+        <label class="modal-label">中文名称</label>
+        <input class="modal-input" id="m-zh" value="${v.zh||''}" placeholder="例：绳索夹胸" style="--accent:${col}">
+      </div>
+      <div class="modal-field">
+        <label class="modal-label">英文名称（可选）</label>
+        <input class="modal-input" id="m-en" value="${v.en||''}" placeholder="Cable Crossover" style="--accent:${col}">
+      </div>
+      <div class="modal-row">
+        <div class="modal-field" style="flex:1">
+          <label class="modal-label">组数</label>
+          <input class="modal-input" id="m-sets" value="${v.sets||'3–4'}" placeholder="3–4" style="--accent:${col}">
+        </div>
+        <div class="modal-field" style="flex:1">
+          <label class="modal-label">次数</label>
+          <input class="modal-input" id="m-reps" value="${v.reps||'10'}" placeholder="10" style="--accent:${col}">
+        </div>
+      </div>
+      <div class="modal-field">
+        <label class="modal-label">备注（可选）</label>
+        <input class="modal-input" id="m-note" value="${typeof v.note==='string'?v.note:''}" placeholder="动作要点…" style="--accent:${col}">
+      </div>
+      <div class="modal-btns">
+        <button class="modal-cancel" onclick="closeModal()">取消</button>
+        <button class="modal-save" onclick="saveModal()" style="background:${col}">${isEdit?'保存':'添加'}</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function closeModalOutside(e){if(e.target.classList.contains('modal-overlay'))closeModal();}
+function closeModal(){S.modal=null;renderModal();}
+
+function saveModal(){
+  const {mode,type,exId,isExtra,ex}=S.modal;
+  const zh=document.getElementById('m-zh').value.trim();
+  const en=document.getElementById('m-en').value.trim();
+  const sets=document.getElementById('m-sets').value.trim()||'3–4';
+  const reps=document.getElementById('m-reps').value.trim()||'10';
+  const note=document.getElementById('m-note').value.trim();
+  if(!zh){toast('请输入动作名称');return;}
+  const cfg=getExConfig(type);
+  if(mode==='add'){
+    const newEx={id:'custom-'+Date.now(),zh,en,sets,reps,note,isExtra:!!isExtra};
+    cfg.added=[...(cfg.added||[]),newEx];
+  } else {
+    // edit default or custom
+    const addedIdx=(cfg.added||[]).findIndex(e=>e.id===exId);
+    if(addedIdx>=0){
+      cfg.added[addedIdx]={...cfg.added[addedIdx],zh,en,sets,reps,note};
+    } else {
+      // override default: store as edited copy in added, hide original
+      cfg.hidden=[...(cfg.hidden||[]),exId];
+      cfg.added=[...(cfg.added||[]),{id:'custom-'+Date.now(),zh,en,sets,reps,note,isExtra:!!isExtra,wKey:ex?.wKey,isPullUp:ex?.isPullUp}];
+    }
+  }
+  setExConfig(type,cfg);
+  closeModal();
+  toast(mode==='add'?'✓ 动作已添加':'✓ 修改已保存');
   render();
 }
 
+function deleteEx(type,exId){
+  document.querySelectorAll('.ex-wrap.swiped').forEach(closeSwipe);
+  const cfg=getExConfig(type);
+  // If it's a custom added exercise, remove it; if default, hide it
+  const addedIdx=(cfg.added||[]).findIndex(e=>e.id===exId);
+  if(addedIdx>=0){
+    cfg.added.splice(addedIdx,1);
+  } else {
+    cfg.hidden=[...(cfg.hidden||[]),exId];
+  }
+  setExConfig(type,cfg);
+  toast('动作已隐藏');
+  render();
+}
+
+// ── Actions ───────────────────────────────────────────────────────
+function toggleTheme(){S.dark=!S.dark;lsS('fw8-dark',S.dark);render();}
+function setDay(i){S.dayIdx=i;S.openCard=null;S.selecting=null;render();}
+function toggleWu(){S.wuOpen=!S.wuOpen;lsS('fw8-wu',S.wuOpen);render();}
+function openCard(id){S.openCard=S.openCard===id?null:id;render();}
+function toggleEdit(){S.editing=!S.editing;S.selecting=null;render();}
+function selectForSwap(i){
+  if(S.selecting===null){S.selecting=i;render();}
+  else if(S.selecting===i){S.selecting=null;render();}
+  else{
+    const arr=[...S.customSch];
+    const a=S.selecting;
+    [arr[a],arr[i]]=[arr[i],arr[a]];
+    S.customSch=arr;setCustomSch(arr);
+    S.selecting=null;toast(`✓ ${DZH[a]} 与 ${DZH[i]} 已互换`);render();
+  }
+}
+function resetSch(){S.customSch=[...DEFAULT_SCH[AUTO_WEEK]];setCustomSch(S.customSch);S.selecting=null;toast('已恢复默认排期');render();}
 function chkWu(id){const c=getChks();c[id]=!c[id];setChks(c);render();}
 function chkSet(exId,idx,n,e){
   e.stopPropagation();
-  const c=getChks();
-  const sets=getSets(c,exId,n);
-  sets[idx]=!sets[idx];
-  c[exId+'_s']=sets;
-  setChks(c);render();
+  const c=getChks();const sets=getSets(c,exId,n);sets[idx]=!sets[idx];
+  c[exId+'_s']=sets;setChks(c);render();
 }
 function sessComplete(){
-  const wo=mkWo(S.weights),type=S.customSch[S.dayIdx],d=wo[type];
-  const c=getChks();
-  c['__sess__']=true;
-  [...(d.main||[]),...(d.extra||[])].forEach(ex=>{c[ex.id+'_s']=Array(maxSets(ex.sets)).fill(true);});
+  const wo=mkWo(S.weights),type=S.customSch[S.dayIdx];
+  const {main,extra}=getExercises(wo,type);
+  const d=wo[type];const c=getChks();c['__sess__']=true;
+  [...main,...extra].forEach(ex=>{c[ex.id+'_s']=Array(maxSets(ex.sets)).fill(true);});
   d.warmup.forEach(it=>{c[it.id]=true;});
   setChks(c);toast('🎉 训练完成！好好休息');render();
 }
 function sessUndo(){const c=getChks();c['__sess__']=false;setChks(c);render();}
 function adjW(key,delta){
   S.weights[key]=Math.max(0,+(S.weights[key]+delta).toFixed(2));
-  lsS('fw7-w',S.weights);toast('✓ 重量已保存');render();
+  lsS('fw8-w',S.weights);toast('✓ 重量已保存');render();
 }
-
 let _tt;
-function toast(msg){
-  const el=document.getElementById('toast');
-  el.textContent=msg;el.classList.add('show');
-  clearTimeout(_tt);_tt=setTimeout(()=>el.classList.remove('show'),2000);
-}
+function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');clearTimeout(_tt);_tt=setTimeout(()=>el.classList.remove('show'),2000);}
 
 applyTheme();render();
 </script>
